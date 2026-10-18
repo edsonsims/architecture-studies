@@ -1,0 +1,17 @@
+{
+  "name": "@architecture-studies/hex-adapters",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@architecture-studies/contracts": "*",
+    "@architecture-studies/hex-domain": "*",
+    "@architecture-studies/hex-application": "*"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@architecture-studies/layered",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@architecture-studies/contracts": "*"
+  }
+}

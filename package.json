@@ -1,0 +1,23 @@
+{
+  "name": "architecture-studies",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Compare three runnable TypeScript architectures against the same document-job lifecycle.",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "demo": "npm run build && node packages/demo/dist/index.js",
+    "clean": "tsc -b --clean"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "7.0.2"
+  }
+}
