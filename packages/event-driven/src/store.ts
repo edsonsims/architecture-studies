@@ -23,4 +23,6 @@ export class InMemoryEventStore {
     this.journal.push(event);
     if (payload.type === 'submitted') this.submissions.set(JSON.stringify([tenantId, payload.key]), id);
   }
+  transaction<T>(operation: () => T): T { return operation(); }
+  close(): void {}
 }

@@ -1,0 +1,4 @@
+Architecture Studies sample
+
+An API accepted the job. A Python service inspected this text.
+The result survives a restart because both services use SQLite.

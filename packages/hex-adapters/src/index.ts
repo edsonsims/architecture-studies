@@ -25,7 +25,10 @@ export class InMemoryJobRepository implements JobRepository {
     const snapshot = job.snapshot();
     this.snapshots.set(JSON.stringify([snapshot.tenantId, snapshot.id]), snapshot);
   }
+  transaction<T>(operation: () => T): T { return operation(); }
 }
+
+export { SqliteJobRepository } from './sqlite-repository.js';
 
 export class HexagonalWorkflow implements JobWorkflow {
   private readonly application: JobApplication;

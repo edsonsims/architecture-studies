@@ -1,0 +1,19 @@
+{
+  "name": "@architecture-studies/http-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@architecture-studies/contracts": "*",
+    "@architecture-studies/layered": "*",
+    "@architecture-studies/hex-adapters": "*",
+    "@architecture-studies/event-driven": "*",
+    "fastify": "5.12.7"
+  }
+}

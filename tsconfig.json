@@ -21,6 +21,9 @@
     },
     {
       "path": "packages/demo"
+    },
+    {
+      "path": "packages/http-api"
     }
   ]
 }

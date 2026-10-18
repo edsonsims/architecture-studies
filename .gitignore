@@ -233,3 +233,13 @@ Thumbs.db
 **/dist/
 **/.tsbuildinfo
 coverage/
+
+# Local service data and Python development tools.
+.local/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+python/.venv/
+**/.pytest_cache/
+**/*.egg-info/
+**/.ruff_cache/

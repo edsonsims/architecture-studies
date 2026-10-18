@@ -13,4 +13,7 @@ export class InMemoryJobData {
     return [...this.rows.values()].filter(row => row.tenantId === tenant);
   }
   insert(row: JobRow): void { this.rows.set(JSON.stringify([row.tenantId, row.id]), row); }
+  update(row: JobRow): void { this.insert(row); }
+  transaction<T>(operation: () => T): T { return operation(); }
+  close(): void {}
 }

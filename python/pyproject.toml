@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "architecture-worker"
+version = "0.1.0"
+description = "Durable local text inspection API for the Architecture Studies workflow"
+requires-python = ">=3.11"
+dependencies = ["fastapi==0.143.3", "uvicorn==0.54.0"]
+
+[tool.setuptools.packages.find]
+include = ["architecture_worker*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"

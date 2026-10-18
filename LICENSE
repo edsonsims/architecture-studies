@@ -1,5 +1,6 @@
 License scope: this license applies to the new TypeScript studies in packages/,
-tests/, their root build configuration, CI configuration, and new documentation.
+tests/, python/, integration/, scripts/, examples/, their root build configuration,
+CI configuration, and new documentation.
 It does not relicense DesignPatternStudy/ or docs/original-pattern-study.md.
 No existing license was found for that historical archive.
 
