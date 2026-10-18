@@ -7,3 +7,5 @@ Local verification uses Node.js 24.19.0, TypeScript 7.0.2 and Python 3.12.14 on 
 Original tracked C# sources were preserved without changes. They were not rebuilt, migrated, or counted as newly tested work.
 
 The owner has not yet recorded a walkthrough or completed the exercises. The services inspect supplied text and demonstrate local persistence. There is no OCR or model inference in this repository. Restart and concurrency checks have the specific scope described in README and the comparison guide; they are not production, power-loss or distributed-delivery validation.
+
+The README visual refresh and original SVG illustrations were also drafted with Codex. The artwork is illustrative, not a screenshot or live system. Runnable README examples and their selected output fields were checked against local CLI/HTTP runs; they do not imply owner review, production use or new model-quality evidence.

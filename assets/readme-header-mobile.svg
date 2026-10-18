@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="310" viewBox="0 0 600 310" role="img" aria-labelledby="title description">
+<title id="title">Architecture Studies</title><desc id="description">Three backend designs for the same document-inspection service. Abstract vector illustration, not a live interface.</desc>
+<defs><clipPath id="edge"><rect width="600" height="310" rx="22"/></clipPath><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#ad91ce" opacity=".2"/></pattern></defs>
+<style>@keyframes travel{to{stroke-dashoffset:-28}}@media(prefers-reduced-motion:no-preference){.trail{animation:travel 9s linear infinite}}</style>
+<g clip-path="url(#edge)"><rect width="600" height="310" fill="#211a34"/><rect x="348.0" width="252.0" height="310" fill="url(#dots)"/>
+<circle cx="580" cy="60" r="180" fill="none" stroke="#423257"/><circle cx="580" cy="60" r="150" fill="none" stroke="#423257"/>
+<text x="30" y="46" fill="#bca7dc" font-family="ui-monospace,'Courier New',monospace" font-size="14" letter-spacing="1">TYPESCRIPT + PYTHON</text>
+<text x="26" y="129" fill="#fff8ed" font-family="'Arial Black',Arial,sans-serif" font-size="55" font-weight="900" letter-spacing="-3">Architecture</text>
+<text x="26" y="195" fill="#fff8ed" font-family="'Arial Black',Arial,sans-serif" font-size="55" font-weight="900" letter-spacing="-3">Studies<tspan fill="#ff9a83">.</tspan></text>
+<g transform="translate(100 70) scale(.43)"><g stroke="#171326" stroke-width="3" stroke-linejoin="round">
+<path d="m916 41 83 48-83 48-83-48z" fill="#c3aff7"/><path d="m833 89 83 48v40l-83-48z" fill="#9072c9"/><path d="m916 137 83-48v40l-83 48z" fill="#6c50a7"/>
+<path d="m1014 113 83 48-83 48-83-48z" fill="#b9f0d4"/><path d="m931 161 83 48v40l-83-48z" fill="#7dc6ac"/><path d="m1014 209 83-48v40l-83 48z" fill="#4b9f8c"/>
+<path d="m819 157 83 48-83 48-83-48z" fill="#ffb09a"/><path d="m736 205 83 48v40l-83-48z" fill="#e28471"/><path d="m819 253 83-48v40l-83 48z" fill="#b96168"/>
+</g><g fill="none" stroke="#f7edff" stroke-width="2.5" stroke-linecap="round"><path d="m891 86 25 14 25-14m-25 14v17m-119 83 22 13 22-13m-22 13v18m174-74 21 12 21-12m-21 12v18"/></g><path d="M1034 61c105 13 130 127 64 194" fill="none" stroke="#b9a4e6" stroke-width="2" stroke-dasharray="4 10" class="trail"/></g><path d="m555 28 4 11 11 4-11 4-4 11-4-11-11-4 11-4z" fill="#ff9a83"/>
+</g></svg>

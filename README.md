@@ -1,32 +1,61 @@
-# Architecture Studies
+<picture>
+  <source media="(max-width: 600px)" srcset="assets/readme-header-mobile.svg">
+  <img src="assets/readme-header.svg" alt="Architecture Studies — three backend designs, one document-inspection workflow" width="1200">
+</picture>
 
-A local document-inspection service, implemented with three backend designs.
-Node.js owns the job lifecycle; a Python API computes text statistics and a
-SHA-256 digest. Both services use SQLite, and the integration suite talks to real
-HTTP servers.
+A document-inspection service with **three backend designs**: layered, ports and
+adapters, and CQRS with an event journal. Node.js owns the job lifecycle; a
+Python service computes text statistics and a SHA-256 digest. Both APIs persist
+to SQLite.
 
-The same API runs as a layered application, ports and adapters, or CQRS with an
-event journal. Switching the architecture changes where state and transactions
-live, while the observable job behavior stays the same.
+[Compare the designs](docs/architecture-comparison.md) ·
+[Node API](docs/node-api.md) · [Python API](python/README.md) ·
+[Verification scope](AI_ASSISTANCE.md)
 
-```mermaid
-flowchart LR
-    Client[Pipeline client] --> Jobs[Node.js / Fastify job API]
-    Client --> Inspector[Python / FastAPI text inspector]
-    Jobs --> JobDB[(Job SQLite database)]
-    Inspector --> ReceiptDB[(Inspection SQLite database)]
-```
+## Follow one job
 
-## Run it
-
-Use **Node.js 24 LTS** and **Python 3.11+**. CI also exercises Node 22.
-Install from the repository root:
+Use **Node.js 24 LTS**; CI also exercises Node 22. From the repository root:
 
 ```sh
 npm ci
-npm run build
+npm run demo
+```
+
+The in-memory demo runs the same failed attempt and retry through all three
+architectures. An excerpt from the actual CLI output:
+
+```text
+Layered
+submit   queued | attempts=0 | version=1
+start    processing | attempts=1 | version=2
+fail     failed | attempts=1 | version=3
+retry    queued | attempts=1 | version=4
+start    processing | attempts=2 | version=5
+complete completed | attempts=2 | version=6
+resubmit same id=true | completed | attempts=2 | version=6
+other tenant sees 0 jobs
+```
+
+The ports-and-adapters and CQRS runs produce the same lifecycle. The demo then
+makes CQRS projection lag visible:
+
+```text
+After start, stale read = queued
+After delivery, read = processing
+After rebuild, read = processing
+```
+
+This first demo exercises domain behavior in memory. The next example uses the
+HTTP and persistence implementations.
+
+## Inspect a file through two real APIs
+
+Add **Python 3.11+** and install the worker environment:
+
+```sh
 python3 -m venv python/.venv
 python/.venv/bin/python -m pip install -r python/requirements-dev.lock
+npm run build
 ```
 
 Start the job API in one terminal:
@@ -42,20 +71,39 @@ cd python
 WORKER_DB_PATH=.local/inspections.sqlite WORKER_PORT=8000 .venv/bin/python -m architecture_worker
 ```
 
-Then submit the included sample from the repository root:
+From the repository root in a third terminal:
 
 ```sh
 python3 scripts/study_pipeline.py --file examples/sample-note.txt
 ```
 
-The client creates a job, starts an attempt, calls the inspector, and stores its
-JSON receipt in the job's existing `text` result field. Run the command again:
-the IDs, result and attempt count stay the same. Stop and restart both services
-to check the result is still there.
+Selected fields from a recorded first response against fresh databases; generated
+IDs and other fields are omitted here:
 
-Set `ARCHITECTURE=layered` or `ARCHITECTURE=cqrs` to compare designs. Use a
-different `DB_PATH` for each study. The job API defaults to port 3000; the
-inspector defaults to 8000. Both bind to `127.0.0.1`.
+```json
+{
+  "job": {"state": "completed", "attemptCount": 1},
+  "inspection": {"utf8Bytes": 156, "codePoints": 156, "words": 24, "lines": 4},
+  "reused": false
+}
+```
+
+Run the same client command again: `reused` becomes `true`, with the same job ID,
+inspection receipt and attempt count. The client stores the JSON inspection
+receipt in the job's existing `text` result field. Stop and restart both APIs to
+inspect the persisted result.
+
+The services bind to `127.0.0.1`, on ports 3000 and 8000. For alternate ports,
+set `PORT` / `WORKER_PORT` and pass `--jobs-url` / `--worker-url` to the client.
+Switch `ARCHITECTURE` to `layered` or `cqrs`, using a separate `DB_PATH` for each.
+
+```mermaid
+flowchart LR
+    Client[Pipeline client] --> Jobs[Node.js job API]
+    Client --> Inspector[Python text inspector]
+    Jobs --> JobDB[(Job SQLite database)]
+    Inspector --> ReceiptDB[(Inspection SQLite database)]
+```
 
 ## What changes between designs
 
