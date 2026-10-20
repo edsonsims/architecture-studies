@@ -9,8 +9,7 @@ Python service computes text statistics and a SHA-256 digest. Both APIs persist
 to SQLite.
 
 [Compare the designs](docs/architecture-comparison.md) ·
-[Node API](docs/node-api.md) · [Python API](python/README.md) ·
-[Verification scope](AI_ASSISTANCE.md)
+[Node API](docs/node-api.md) · [Python API](python/README.md)
 
 ## Follow one job
 
@@ -144,8 +143,8 @@ python/.venv/bin/python -m unittest discover -s integration -p 'test_*.py' -v
   bytes through the real CLI.
 
 A process-kill test after a committed response is evidence of restart behavior;
-it does not establish power-loss durability. See
-[verification and assistance scope](AI_ASSISTANCE.md) for the tested versions.
+it does not establish power-loss durability. Recorded local verification used
+Node.js 24.19.0, TypeScript 7.0.2 and Python 3.12.14 on macOS arm64.
 
 ## Deliberate limits
 
